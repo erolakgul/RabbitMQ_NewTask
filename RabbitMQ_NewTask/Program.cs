@@ -17,8 +17,8 @@ namespace RabbitMQ_NewTask
                 using (var channel = connection.CreateModel())
                 {
 
-                    channel.QueueDeclare(queue: "task_queue",
-                                        durable: false,
+                    channel.QueueDeclare(queue: "task_queue2",
+                                        durable: true,
                                         exclusive: false,
                                         autoDelete: false,
                                         arguments: null);

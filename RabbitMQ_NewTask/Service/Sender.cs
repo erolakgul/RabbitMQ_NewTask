@@ -17,7 +17,7 @@ namespace RabbitMQ_NewTask.Service
 
             for (int i = 0; i < _arr.Length; i++)
             {
-                message = i + ". Message" + _arr[i];
+                message = (i + 1) + ". Message" + _arr[i];
 
                 Console.WriteLine(message);
                 Thread.Sleep(i * 1000);
@@ -27,12 +27,17 @@ namespace RabbitMQ_NewTask.Service
                 var properties = channel.CreateBasicProperties();
                 properties.Persistent = true;
 
-                channel.BasicPublish(exchange: "",
-                                     routingKey: "task_queue",
-                                     basicProperties: properties,
-                                     body: body);
+                for (int j = 0; j < 2; j++)
+                {
+                    channel.BasicPublish(exchange: "",
+                                    routingKey: "task_queue2",
+                                    basicProperties: properties,
+                                    body: body);
+                    Console.WriteLine(" [x] Sent {0}", message);
+                }
+               
 
-                Console.WriteLine(" [x] Sent {0}", message);
+             
             }
         }
     }
