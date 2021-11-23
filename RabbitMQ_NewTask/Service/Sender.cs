@@ -27,7 +27,7 @@ namespace RabbitMQ_NewTask.Service
                 var properties = channel.CreateBasicProperties();
                 properties.Persistent = true;
 
-                for (int j = 0; j < 2; j++)
+                for (int j = 0; j < 2; j++)  // aynı mesajı aynı anda 2 kere göndereceğiz.
                 {
                     channel.BasicPublish(exchange: "",
                                     routingKey: "task_queue2",
